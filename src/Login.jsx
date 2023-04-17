@@ -1,15 +1,30 @@
-import React from "react";
+import { Result } from "postcss";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./providers/AuthProvider";
 
 const Login = () => {
-
-  const handleLogin = event =>{
-event.preventDefault
+  const {signIn} = useContext(AuthContext)
+  const handleLogin = (event) => {
+    event.preventDefault;
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password)
-  }
+    console.log(email, password);
+
+
+    signIn (email, password)
+    .then (result =>{
+      const loggedUser = result.user;
+      console.log(loggedUser)
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+
+
+
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -26,7 +41,7 @@ event.preventDefault
               <input
                 type="email"
                 placeholder="email"
-                name= "email"
+                name="email"
                 className="input input-bordered"
               />
             </div>
@@ -36,13 +51,13 @@ event.preventDefault
               </label>
               <input
                 type="password"
-                name = "password" 
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
               />
               <label className="label">
-                <Link to = "/register" className="label-text-alt link link-hover">
-                  Forgot password?                
+                <Link to="/register" className="label-text-alt link link-hover">
+                  Forgot password?
                 </Link>
               </label>
             </div>
@@ -50,7 +65,7 @@ event.preventDefault
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
-          </div>
+        </div>
       </div>
     </div>
   );
