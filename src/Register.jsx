@@ -74,7 +74,7 @@ const {user, createUser} = useContext(AuthContext)
                 <Link to="/login" className="label-text-alt link link-hover">
                   Already have an account?
                 </Link>
-              </label>
+              </label>             
           </form>
         </div>
       </div>
